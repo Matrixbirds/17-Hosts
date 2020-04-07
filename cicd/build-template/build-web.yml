@@ -27,7 +27,7 @@ jobs:
 
       - task: PublishBuildArtifacts@1
         inputs:
-          PathtoPublish: ${{ parameters.workingDirectory }}/app
+          PathtoPublish: ${{ parameters.workingDirectory }}/build
           ArtifactName: ${{ parameters.displayName }}
 
       - template: github-release.yml
