@@ -19,7 +19,7 @@ jobs:
           displayName: 'Install Node.js 12.16.x'
     
       - script: cd '${{ parameters.workingDirectory }}'
-            npm install
+            npm install &&
             npm run build
         displayName: 'npm install and build'
         env:
