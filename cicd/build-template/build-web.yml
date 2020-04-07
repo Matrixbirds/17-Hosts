@@ -18,16 +18,17 @@ jobs:
           versionSpec: '12.16.x'
           displayName: 'Install Node.js 12.16.x'
     
-      - script: cd '${{ parameters.workingDirectory }}'
-            npm install &&
-            npm run build
+      - script: cd '${{ parameters.workingDirectory }}';
+            npm install;
+            npm run build;
+            mv build app;
         displayName: 'npm install and build'
         env:
           AGORA_APP_ID: $(agora.appId)
 
       - task: PublishBuildArtifacts@1
         inputs:
-          PathtoPublish: ${{ parameters.workingDirectory }}/build
+          PathtoPublish: ${{ parameters.workingDirectory }}/app
           ArtifactName: ${{ parameters.displayName }}
 
       - template: github-release.yml
