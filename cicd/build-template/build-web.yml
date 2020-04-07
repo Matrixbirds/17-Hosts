@@ -1,6 +1,7 @@
 parameters:
   displayName: ''
   workingDirectory: ''
+  deployDirectory: '$(agora.showcaseFolder)/examples/17-Hosts'
 
 jobs:
   - job: ${{ parameters.displayName }}Build
@@ -36,7 +37,7 @@ jobs:
           sshEndpoint: 'webdemo_1'
           sourceFolder: ${{ parameters.workingDirectory }}/app
           contents: '**'
-          targetFolder: $(agora.targetFolder)
+          targetFolder: ${{ parameters.deployDirectory }}
           readyTimeout: '60000'
           failOnEmptySource: true
           overwrite: true
@@ -47,7 +48,7 @@ jobs:
           sshEndpoint: 'webdemo_2'
           sourceFolder: ${{ parameters.workingDirectory }}/app
           contents: '**'
-          targetFolder: $(agora.targetFolder)
+          targetFolder: ${{ parameters.deployDirectory }}
           readyTimeout: '60000'
           failOnEmptySource: true
           overwrite: true
