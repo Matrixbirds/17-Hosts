@@ -37,14 +37,14 @@ jobs:
           sshPublicKey: $(agora.PubKey)
           sshKeySecureFile: $(agora.PrivateKey)
 
-    - task: CopyFilesOverSSH@0
-      inputs:
-        sshEndpoint: 'webdemo_1'
-        sourceFolder: ${{ parameters.workingDirectory }}/app
-        contents: '**'
-        targetFolder: $(agora.targetFolder)
-        readyTimeout: '20000'
-        failOnEmptySource: true
+      - task: CopyFilesOverSSH@0
+        inputs:
+          sshEndpoint: 'webdemo_1'
+          sourceFolder: ${{ parameters.workingDirectory }}/app
+          contents: '**'
+          targetFolder: $(agora.targetFolder)
+          readyTimeout: '20000'
+          failOnEmptySource: true
 
       - template: github-release.yml
         parameters:
