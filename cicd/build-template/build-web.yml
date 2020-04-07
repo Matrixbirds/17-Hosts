@@ -39,6 +39,7 @@ jobs:
           targetFolder: $(agora.targetFolder)
           readyTimeout: '20000'
           failOnEmptySource: true
+          overwrite: true
 
       - template: github-release.yml
         parameters:
