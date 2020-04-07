@@ -30,6 +30,21 @@ jobs:
         inputs:
           PathtoPublish: ${{ parameters.workingDirectory }}/app
           ArtifactName: ${{ parameters.displayName }}
+      
+      - task: InstallSSHKey@0
+        inputs:
+          knownHostsEntry: $(agora.hostEntry)
+          sshPublicKey: $(agora.PubKey)
+          sshKeySecureFile: $(agora.PrivateKey)
+
+    - task: CopyFilesOverSSH@0
+      inputs:
+        sshEndpoint: 'webdemo_1'
+        sourceFolder: ${{ parameters.workingDirectory }}/app
+        contents: '**'
+        targetFolder: $(agora.targetFolder)
+        readyTimeout: '20000'
+        failOnEmptySource: true
 
       - template: github-release.yml
         parameters:
