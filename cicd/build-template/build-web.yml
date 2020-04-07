@@ -37,9 +37,10 @@ jobs:
           sourceFolder: ${{ parameters.workingDirectory }}/app
           contents: '**'
           targetFolder: $(agora.targetFolder)
-          readyTimeout: '20000'
+          readyTimeout: '60000'
           failOnEmptySource: true
           overwrite: true
+        timeoutInMinutes: 2
 
       - template: github-release.yml
         parameters:
