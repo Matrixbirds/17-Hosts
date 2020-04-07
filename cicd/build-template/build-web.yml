@@ -24,7 +24,7 @@ jobs:
             mv build app;
         displayName: 'npm install and build'
         env:
-          AGORA_APP_ID: $(agora.appId)
+          REACT_APP_AGORA_APP_ID: $(agora.appId)
 
       - task: PublishBuildArtifacts@1
         inputs:
