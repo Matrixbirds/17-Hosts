@@ -42,6 +42,17 @@ jobs:
           overwrite: true
         timeoutInMinutes: 2
 
+      - task: CopyFilesOverSSH@0
+        inputs:
+          sshEndpoint: 'webdemo_2'
+          sourceFolder: ${{ parameters.workingDirectory }}/app
+          contents: '**'
+          targetFolder: $(agora.targetFolder)
+          readyTimeout: '60000'
+          failOnEmptySource: true
+          overwrite: true
+        timeoutInMinutes: 2
+
       - template: github-release.yml
         parameters:
           displayName: ${{ parameters.displayName }}
